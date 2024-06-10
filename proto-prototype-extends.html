@@ -1,0 +1,78 @@
+<body style="background-color: #000;"></body>
+<script>
+
+
+  function Car(brand, maxSpeed) {
+    this.brand = brand;
+    this.maxSpeed = maxSpeed;
+  }
+
+  Car.prototype.startEngine = function () {
+    console.log(`${this.brand} engine is started`);
+  };
+
+  Car.compareCar = function (car1, car2) {
+    car1.maxSpeed === car2.maxSpeed
+      ? console.log(`cars have same speed`)
+      : car1.maxSpeed > car2.maxSpeed
+        ? console.log(`${car1.brand} is faster than ${car2.brand}`)
+        : console.log(`${car1.brand} is slower than  ${car2.brand}`);
+  };
+
+  const car1 = new Car('BMW', 250);
+  const car2 = new Car('MOSKVICH', 350);
+
+  // car1.startEngine();
+  // Car.compareCar(car1, car2);
+
+  function SuperCar(brand, maxSpeed, canFly) {
+    this.brand = brand;
+    this.maxSpeed = maxSpeed;
+    this.canFly = canFly;
+  }
+
+  SuperCar.prototype.fly = function () {
+    console.log(`${this.brand} is flying`);
+  };
+
+  // SuperCar.prototype.startEngine = Car.prototype.startEngine;
+  // SuperCar.prototype.__proto__ = Car.prototype;
+Object.setPrototypeOf(SuperCar.prototype, Car.prototype);
+  // TODO moe reshenie
+  // SuperCar.compareCar = Car.compareCar;
+
+  // TODO reshenie s uroka
+  SuperCar.__proto__  = Car
+  // SuperCar.__proto__.compareCar  = Car.compareCar
+
+  console.dir(SuperCar);
+  // console.dir(SuperCar.__proto__);
+  // console.dir(SuperCar.prototype);
+  const superCar1 = new SuperCar(`superBMWm6`, 250, true);
+  const superCar2 = new SuperCar(`superPORSHE`, 450, true);
+console.dir(superCar1);
+  superCar1.fly();
+  superCar1.startEngine();
+  SuperCar.compareCar(superCar1, superCar2);
+
+  console.dir(Array.__proto__ === Function.prototype);
+
+// TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
